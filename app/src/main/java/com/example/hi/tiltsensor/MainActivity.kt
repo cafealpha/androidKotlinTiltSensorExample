@@ -16,8 +16,6 @@ class MainActivity : AppCompatActivity() , SensorEventListener {
 
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
-        TODO("not implemented") //To chan
-        setContentView(tiltView)ge body of created functions use File | Settings | File Templates.
     }
 
     override fun onSensorChanged(event: SensorEvent?) {
@@ -28,6 +26,8 @@ class MainActivity : AppCompatActivity() , SensorEventListener {
         event?.let{
             Log.d("MainActivity", "onSensorChanged: x : " +
                     "${event.values[0]}, y : ${event.values[1]}, z: ${event.values[2]}")
+            tiltView.onSensorEvent(event)
+
         }
     }
 
@@ -43,6 +43,8 @@ class MainActivity : AppCompatActivity() , SensorEventListener {
 
         super.onCreate(savedInstanceState)
         tiltView = TiltView(this)
+
+        setContentView(tiltView)
 
         //setContentView(R.layout.activity_main)
     }
